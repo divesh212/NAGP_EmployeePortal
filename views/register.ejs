@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Register</title>
+</head>
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        padding-top: 15%;
+    }
+
+    .register-form-card {
+        width: 600px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="card register-form-card">
+            <div class="card-header">
+                <h2>Register</h2>
+            </div>
+            <div class="card-body">
+                <form action="/register" method="POST">
+
+                    <div class="form-group">
+                        <input name="username" type="text" placeholder="Set Username" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <input name="password" type="password" placeholder="Set Password" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select name="role" id="role" class="form-control">
+                            <option selected>Employee</option>
+                            <option>Manager</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-dark">Register User</button>
+                        <a class="btn btn-link text-black-50" href="#">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

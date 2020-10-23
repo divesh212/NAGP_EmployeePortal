@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <title>Openings</title>
+
+</head>
+
+<body>
+
+  <%- include('nav', {title: title}); %>
+
+  <br>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <td>Project Name</td>
+        <td>Client Name</td>
+        <td>Technologies</td>
+        <td>Role</td>
+        <% if(isManager) {%>
+          <td>Status</td>
+      <% } %>
+      </tr>
+    </thead>
+    <% openings.forEach(function(opening){ %>
+    <tr>
+      <td><%= opening.project %></td>
+      <td><%= opening.client %></td>
+      <td><%= opening.technologies %></td>
+      <td><%= opening.role %></td>
+      <% if(isManager) {%>
+        <% if(opening.isOpen) { %>
+          <td>OPEN</td>
+        <% } %>
+        <% if(!opening.isOpen) { %>
+          <td>CLOSED</td>
+        <% } %>
+    <% } %>
+      <td>
+        <form action="/openings/<%= opening._id%>" method="GET">
+          <button type="submit" value="Details">Details</button>
+        </form>
+      </td>
+      <td>
+        <form action="/openings/apply/<%= opening._id%>" method="POST">
+          <button type="submit" value="Apply">Apply</button>
+        </form>
+      </td>
+      <td>
+        <% if(isManager) {%>
+          <form action="/openings/add/<%= opening._id%>" method="GET">
+              <button type="submit">Update</button>
+          </form>
+      <% } %>
+      </td>
+    </tr>
+    <% }); %>
+  </table>
+
+  <% if(isManager) {%>
+    <form action="/openings/add" method="GET">
+        <button type="submit">Add</button>
+    </form>
+<% } %>
+
+</body>
+
+</html>

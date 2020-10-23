@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening Detail</title>
+</head>
+<body>
+    <%- include('nav', {title: title}); %>
+    <table class="table">
+        <tr>
+            <th scope="row">Project Name</th>
+            <td><%= opening.project %></td>
+        </tr>
+        <tr>
+            <th scope="row">Client Name</th>
+            <td><%= opening.client %></td>
+        </tr>
+        <tr>
+            <th scope="row">Technologies</th>
+            <td><%= opening.technologies %></td>
+        </tr>
+        <tr>
+            <th scope="row">Role</th>
+            <td><%= opening.role %></td>
+        </tr>
+        <tr>
+            <th scope="row">Description</th>
+            <td><%= opening.description %></td>
+        </tr>
+    </table>
+
+    <% if(isManager) {%>
+        <form action="/openings/add/<%- opening._id %>" method="GET">
+            <input type="hidden" name="_id" value='<%= opening._id %>'>
+            <button type="submit">Update</button>
+        </form>
+    <% } %>
+
+    <form action="/openings/apply/<%= opening._id%>" method="POST">
+        <button type="submit">Apply</button>
+    </form>
+
+</body>
+</html>
