@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "cross-env JWT_SECRET=MY_SECRET_KEY DB_URL=mongodb://127.0.0.1/admin mocha",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -18,5 +19,12 @@
     "morgan": "~1.9.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "mocha": "^8.2.0",
+    "sinon": "^9.2.0",
+    "supertest": "^5.0.0"
   }
 }

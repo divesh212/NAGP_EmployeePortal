@@ -22,7 +22,7 @@ UserSchema.methods.generateJwtToken = function() {
         id: this._id,
         username: this.username,
         isManager: this.role==='Manager',
-        exp: parseInt(expirationDate.getTime() / 1000, 10)
+        //exp: parseInt(expirationDate.getTime() / 1000, 10)
     }, jwtSecret);
 };
 
