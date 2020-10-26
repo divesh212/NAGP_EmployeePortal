@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
 
 const jwtSecret = process.env.JWT_SECRET;
 const UserSchema = new Schema({
@@ -9,8 +10,14 @@ const UserSchema = new Schema({
     role: { type: String, enum: ['Employee', 'Manager'] }
 })
 
-UserSchema.methods.validatePassword = function(password) {
-    return this.password === password;
+UserSchema.methods.validatePassword = async function(password) {
+    const pwdMatches = await bcrypt.compare(password, this.password);
+    return pwdMatches;
+};
+
+UserSchema.methods.setHashedPassword = async function() {
+    const hashedPassword = await bcrypt.hash(this.password, 10);
+    this.password = hashedPassword;
 };
 
 UserSchema.methods.generateJwtToken = function() {
